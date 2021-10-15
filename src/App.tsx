@@ -1,9 +1,5 @@
-import './app.css'
+import Calculator from './components/calculator/Calculator';
 
 export const App = () => {
-  return (
-    <>
-      <h1>Calculator {process.env.name}</h1>
-    </>
-  )
-}
+  return <Calculator />;
+};

@@ -3,7 +3,7 @@
 
 Basic IOS Calculator with React, TS, Mobx.
 This a very basic project, many edge cases to be found. 
-Was created from scratch no boilerplate from   ```sh Create-react-app```
+Was created from scratch no boilerplate from   ```Create-react-app```
 
 ### Install & Run
  

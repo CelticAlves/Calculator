@@ -16,7 +16,7 @@ Was created from scratch no boilerplate from   ```Create-react-app```
    yarn start
    ```
 
-### Install & Run
+### Other Scripts
 
 3. Run tests
    ```sh

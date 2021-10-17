@@ -88,6 +88,11 @@ export const CalculatorStyles = styled('div')`
         &.dot {
           grid-area: dot;
         }
+        &.disabled {
+          pointer-events: none;
+          background-color: papayawhip;
+          color: papayawhip;
+        }
       }
     }
 

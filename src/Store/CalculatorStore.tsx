@@ -1,7 +1,6 @@
-import { makeAutoObservable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { ICalculator } from '../Types/types';
 import { calculate } from '../Services/calculator.service';
-import store from '../Store/store';
 
 export class CalculatorStore implements ICalculator {
   value: number = null;
@@ -11,11 +10,20 @@ export class CalculatorStore implements ICalculator {
   clearAll = true;
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, {
+      value: observable,
+      displayValue: observable,
+      restHistory: action,
+      restDisplay: action,
+      sign: action,
+      percentage: action,
+      displayDigits: action,
+      displayDigitsDotException: action,
+      cumputeOperation: action,
+    });
   }
 
   restHistory() {
-    store.appState.state = 'completed';
     this.value = null;
     this.displayValue = '0';
     this.operator = null;
@@ -24,7 +32,6 @@ export class CalculatorStore implements ICalculator {
   }
 
   restDisplay() {
-    store.appState.state = 'completed';
     this.displayValue = '0';
     this.clearAll = true;
   }
@@ -44,7 +51,6 @@ export class CalculatorStore implements ICalculator {
   }
 
   displayDigits(number: string) {
-    store.appState.state = 'completed';
     if (this.cachedOperator) {
       this.displayValue = number;
       this.cachedOperator = false;
@@ -57,7 +63,6 @@ export class CalculatorStore implements ICalculator {
   }
 
   displayDigitsDotException() {
-    store.appState.state = 'completed';
     if (this.cachedOperator) {
       this.displayValue = '0.';
       this.cachedOperator = false;
@@ -68,16 +73,22 @@ export class CalculatorStore implements ICalculator {
     this.clearAll = false;
   }
 
-  cumputeOperation(operator: string) {
+  async cumputeOperation(operator: string) {
     const input = parseFloat(this.displayValue);
 
     if (this.value === null) {
       this.value = input;
     } else if (this.operator) {
       const currentValue = this.value || 0;
-      const operatedNumber = calculate(this.operator, currentValue, input);
-      this.value = operatedNumber;
-      this.displayValue = String(operatedNumber);
+      const operatedNumber = await calculate(
+        this.operator,
+        currentValue,
+        input
+      );
+      runInAction(() => {
+        this.value = operatedNumber;
+        this.displayValue = String(operatedNumber);
+      });
     }
     this.cachedOperator = true;
     this.operator = operator;

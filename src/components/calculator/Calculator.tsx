@@ -1,9 +1,14 @@
 import React from 'react';
-import { CalculatorStyles } from './Calculator.styled';
-import store from '../../Store/store';
 import { observer } from 'mobx-react';
+import store from '../../Store/store';
+import { CalculatorStyles } from './Calculator.styled';
 
 const Calculator = () => {
+  const displayFormatted = () => {
+    const display = store.calculator.displayValue;
+    const convertedNumber = display.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return convertedNumber;
+  };
   const handleNumbers = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const event = e.target as HTMLElement;
     const key = event.innerText;
@@ -12,7 +17,6 @@ const Calculator = () => {
 
     if (key === '.') {
       store.calculator.displayDigitsDotException();
-      // store.displayDigitsDotException();
     } else {
       store.calculator.displayDigits(event.innerText);
     }
@@ -30,7 +34,7 @@ const Calculator = () => {
     <CalculatorStyles>
       <section data-test="calculator-app" className="grid-wrapper">
         <div data-test="display" className="display">
-          {store.calculator.displayValue}
+          {store.appState.state === 'error' ? 'sorry :(' : displayFormatted()}
         </div>
         <div
           className="functions clear key"

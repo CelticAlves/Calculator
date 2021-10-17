@@ -1,7 +1,7 @@
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Calculator from './components/calculator/Calculator';
-import { operations } from './Store/CalculatorStore';
+import { operations } from './Utils/utils';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 

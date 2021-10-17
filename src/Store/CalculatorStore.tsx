@@ -1,16 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import { state } from '../Types/types';
+import { ICalculator } from '../Types/types';
+import { calculate } from '../Services/calculator.service';
+import store from '../Store/store';
 
-export const operations = (operator: string, prev: number, next: number) => {
-  if (operator === '+') return prev + next;
-  if (operator === '-') return prev - next;
-  if (operator === '×') return prev * next;
-  if (operator === '÷') return prev / next;
-  if (operator === '=') return next;
-  return;
-};
-
-export class CalculatorStore implements state {
+export class CalculatorStore implements ICalculator {
   value: number = null;
   displayValue = '0';
   operator: string = null;
@@ -22,6 +15,7 @@ export class CalculatorStore implements state {
   }
 
   restHistory() {
+    store.appState.state = 'completed';
     this.value = null;
     this.displayValue = '0';
     this.operator = null;
@@ -30,6 +24,7 @@ export class CalculatorStore implements state {
   }
 
   restDisplay() {
+    store.appState.state = 'completed';
     this.displayValue = '0';
     this.clearAll = true;
   }
@@ -49,6 +44,7 @@ export class CalculatorStore implements state {
   }
 
   displayDigits(number: string) {
+    store.appState.state = 'completed';
     if (this.cachedOperator) {
       this.displayValue = number;
       this.cachedOperator = false;
@@ -57,11 +53,11 @@ export class CalculatorStore implements state {
         ? (this.displayValue = number)
         : (this.displayValue = this.displayValue + number);
     }
-    // const convertedNumber = number.replace(/(.)(?=(\d{3})+$)/g, '$1,');
     this.clearAll = false;
   }
 
   displayDigitsDotException() {
+    store.appState.state = 'completed';
     if (this.cachedOperator) {
       this.displayValue = '0.';
       this.cachedOperator = false;
@@ -79,7 +75,7 @@ export class CalculatorStore implements state {
       this.value = input;
     } else if (this.operator) {
       const currentValue = this.value || 0;
-      const operatedNumber = operations(this.operator, currentValue, input);
+      const operatedNumber = calculate(this.operator, currentValue, input);
       this.value = operatedNumber;
       this.displayValue = String(operatedNumber);
     }

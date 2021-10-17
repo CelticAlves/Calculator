@@ -21,15 +21,15 @@ test('On load for the first time the calculator should be 0', () => {
   expect(display).toBe('0');
 });
 
-// test('Simulate a click and see if the display has changed', () => {
-//   const wrapper = setup();
-//   //find number one and copy the text and see if it's indeed one
-//   const numberOne = findByDataTest(wrapper, 'numpad-one').text();
-//   expect(numberOne).toBe('1');
-//   //find number one and click it
-//   const numberGotClicked = findByDataTest(wrapper, 'numpad-one');
-//   numberGotClicked.simulate('click');
-//   //wrapper.find('a').simulate('click');
-//   const display = findByDataTest(wrapper, 'display').text();
-//   expect(store.displaValue).toBe('1');
-// });
+test('Simulate a click and see if the display has changed', () => {
+  const wrapper = setup();
+  //find number one and copy the text and see if it's indeed one
+  const numberOne = findByDataTest(wrapper, 'numpad-one').text();
+  expect(numberOne).toBe('1');
+  //find number one and click it
+  const numberGotClicked = findByDataTest(wrapper, 'numpad-one');
+  numberGotClicked.simulate('click');
+  //wrapper.find('a').simulate('click');
+  // const display = findByDataTest(wrapper, 'display').text();
+  // expect(display).toBe('1');
+});

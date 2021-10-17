@@ -92,8 +92,8 @@ export const CalculatorStyles = styled('div')`
     }
 
     @media (min-width: 400px) {
-      grid-template-columns: repeat(4, 20vw);
-      grid-template-rows: repeat(6, 20vw);
+      grid-template-columns: repeat(4, 16vw);
+      grid-template-rows: repeat(6, 16vw);
       .display {
         padding-right: 5vw;
         font-size: 16vw;
@@ -107,8 +107,8 @@ export const CalculatorStyles = styled('div')`
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: repeat(4, 175px);
-      grid-template-rows: repeat(6, 175px);
+      grid-template-columns: repeat(4, 130px);
+      grid-template-rows: repeat(6, 130px);
       .display {
         padding-right: 56px;
         font-size: 7rem;

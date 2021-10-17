@@ -2,7 +2,7 @@
 ## About the project
 
 Basic IOS Calculator with React, TS, Mobx.
-This a very basic project, many edge cases to be found. 
+This a very basic project, many edge cases to be found. When you click an arithemetic function (+,-,/,*) and =  you will have the numbers temporarily disabled and change color to papaywhip just to represent a slow call to the Backend. 
 Was created from scratch no boilerplate from   ```Create-react-app```
 
 ### Install & Run

@@ -11,5 +11,5 @@ class Store {
   }
 }
 
-const store = new Store();
-export default store;
+// const store = new Store();
+export default new Store();

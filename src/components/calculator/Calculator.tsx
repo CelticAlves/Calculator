@@ -70,6 +70,7 @@ const Calculator = () => {
           1
         </div>
         <div
+          data-test="numpad-two"
           className={`numpad two key ${loading}`}
           onClickCapture={action((e) => handleNumbers(e))}
         >
@@ -149,6 +150,7 @@ const Calculator = () => {
           -
         </div>
         <div
+          data-test="sum"
           className="operator key"
           onClickCapture={(e) => handleOperators(e)}
         >

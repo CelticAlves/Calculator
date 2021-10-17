@@ -26,7 +26,7 @@ export const CalculatorStyles = styled('div')`
       align-items: center;
       justify-content: flex-end;
       font-size: 4rem;
-      padding-right: 15px;
+      padding-right: 3vw;
       color: ${(props) => props.theme.fonts.colorPrimary};
     }
 
@@ -100,7 +100,7 @@ export const CalculatorStyles = styled('div')`
       grid-template-columns: repeat(4, 16vw);
       grid-template-rows: repeat(6, 16vw);
       .display {
-        padding-right: 5vw;
+        padding-right: 3vw;
         font-size: 16vw;
       }
       .key {
@@ -115,7 +115,7 @@ export const CalculatorStyles = styled('div')`
       grid-template-columns: repeat(4, 130px);
       grid-template-rows: repeat(6, 130px);
       .display {
-        padding-right: 56px;
+        padding-right: 41px;
         font-size: 7rem;
       }
       .key {
